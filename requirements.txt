@@ -1,0 +1,17 @@
+pydantic>=2.0.0
+langchain>=0.1.0
+langgraph
+psycopg2-binary
+redis
+chromadb
+sentence-transformers
+asyncpg
+databases
+openai
+fastapi
+uvicorn
+python-dotenv
+pyyaml
+httpx
+tiktoken
+pytest
