@@ -1,3 +1,0 @@
-"""
-scheduling_tools.py
-"""
