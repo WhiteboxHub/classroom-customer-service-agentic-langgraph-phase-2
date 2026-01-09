@@ -14,6 +14,11 @@ from src.core.graph.state_schema import AgentState, ToolCall, AuditEvent
 from src.core.security.audit_logger import AuditLogger
 from src.interfaces.mcp_client import MCPClient
 from src.rag import RagEngine
+# from core.llm import get_llm
+# from core.graph.state_schema import AgentState, ToolCall, AuditEvent
+# from core.security.audit_logger import AuditLogger
+# from interfaces.mcp_client import MCPClient
+# from rag import RagEngine
 
 rag = RagEngine()
 mcp_client = MCPClient()
@@ -163,7 +168,7 @@ Respond with JSON in this format:
             "messages": [AIMessage(content=final_response)],
             "tool_calls": new_tool_calls,
             "audit_trail": [audit_event],
-            "next_step": "__end__",
+            # "next_step": "__end__",
         }
     
     except Exception as e:
@@ -179,5 +184,5 @@ Respond with JSON in this format:
         # Fallback response
         return {
             "messages": [AIMessage(content="I apologize, but I encountered an error processing your claim inquiry. Please try again or contact support.")],
-            "next_step": "__end__",
+            # "next_step": "__end__",
         }

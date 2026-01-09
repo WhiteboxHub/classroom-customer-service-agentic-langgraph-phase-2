@@ -12,6 +12,10 @@ from src.core.llm import get_llm
 from src.core.graph.state_schema import AgentState, ToolCall, AuditEvent
 from src.core.security.audit_logger import AuditLogger
 from src.interfaces.mcp_client import MCPClient
+# from core.llm import get_llm
+# from core.graph.state_schema import AgentState, ToolCall, AuditEvent
+# from core.security.audit_logger import AuditLogger
+# from interfaces.mcp_client import MCPClient
 
 mcp_client = MCPClient()
 audit_logger = AuditLogger()
@@ -45,18 +49,18 @@ async def scheduling_agent_node(state: AgentState) -> Dict[str, Any]:
     llm = get_llm("scheduling")
     
     system_prompt = """You are a Scheduling Coordinator for XYZ Corp.
-Your responsibility is to optimize appointment slots for technicians and customer support representatives.
-Prioritize urgent issues and minimize travel time for field techs.
+        Your responsibility is to optimize appointment slots for technicians and customer support representatives.
+        Prioritize urgent issues and minimize travel time for field techs.
 
-Available tools:
-{tools}
+        Available tools:
+        {tools}
 
-Respond with JSON:
-{{
-    "reasoning": "Why you need these tools",
-    "tool_calls": [],
-    "response_template": "Draft response"
-}}"""
+        Respond with JSON:
+        {{
+            "reasoning": "Why you need these tools",
+            "tool_calls": [],
+            "response_template": "Draft response"
+        }}"""
     
     prompt = ChatPromptTemplate.from_messages([
         ("system", system_prompt),

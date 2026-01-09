@@ -1,0 +1,39 @@
+# EVERYTHING by default
+**
+
+# Allow only what the app needs
+!Dockerfile
+!requirements.txt
+!src/
+!config/
+!scripts/
+!README.md
+
+# Python junk
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual envs (THIS IS YOUR 1GB)
+venv/
+.venv/
+mynev/
+env/
+
+# Git (VERY LARGE)
+.git/
+
+# Local databases / vector stores
+chroma_data/
+chroma_data_local/
+*.sqlite3
+local.db
+
+# Notebooks & docs
+notebooks/
+*.ipynb
+*.pdf
+
+# Tests (optional)
+tests/
