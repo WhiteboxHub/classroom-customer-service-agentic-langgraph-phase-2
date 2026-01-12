@@ -1,0 +1,7 @@
+{
+    "D01": "Duplicate Claim - This service has already been adjudicated.",
+    "E45": "Ineligible Service - The patient's plan does not cover this procedure.",
+    "P12": "Pre-authorization Required - Service requires prior approval.",
+    "M22": "Missing Information - Please submit medical records.",
+    "C03": "Coverage Terminated - Patient coverage was not active on date of service."
+}

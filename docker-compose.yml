@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: xyz_agent_app
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_URL=postgresql://xyz_user:xyz_password@postgres:5432/xyz_db
+      - REDIS_URL=redis://redis:6379/0
+      - CHROMA_HOST=chromadb
+      - CHROMA_PORT=8000
+    depends_on:
+      - postgres
+      - redis
+      - chromadb
+    volumes:
+      - .:/app
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: xyz_postgres
+    environment:
+      POSTGRES_USER: xyz_user
+      POSTGRES_PASSWORD: xyz_password
+      POSTGRES_DB: xyz_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:alpine
+    container_name: xyz_redis
+    ports:
+      - "6379:6379"
+
+  chromadb:
+    image: chromadb/chroma:latest
+    container_name: xyz_chroma
+    ports:
+      - "8001:8000" # Mapped to host 8001 to avoid conflict with app if running locally
+    volumes:
+      - chroma_data:/chroma/chroma
+
+volumes:
+  postgres_data:
+  chroma_data:
