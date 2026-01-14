@@ -4,7 +4,7 @@ import pytest
 
 from deepeval import assert_test
 from deepeval.test_case import LLMTestCase
-from deepeval.metrics import AnswerRelevancyMetric
+from deepeval.metrics import GEval
 
 from langchain_core.messages import HumanMessage
 
@@ -18,10 +18,16 @@ from agents.scheduling.agent import scheduling_node
 from agents.backend.sentinel import sentinel_node
 
 
+# -----------------------------
+# Load evaluation dataset
+# -----------------------------
 DATA_PATH = Path("tests/eval/data/orchestrator_eval.json")
 DATA = json.loads(DATA_PATH.read_text())
 
 
+# -----------------------------
+# Graph runner
+# -----------------------------
 def run_graph(user_input: str):
     engine = Engine()
     engine.build_complete_graph(
@@ -50,28 +56,62 @@ def run_graph(user_input: str):
     return graph.invoke(state)
 
 
+# -----------------------------
+# DeepEval: Routing quality
+# -----------------------------
+routing_quality_metric = GEval(
+    name="Orchestrator Routing Quality",
+    criteria="""
+    Evaluate whether the orchestrator selected the correct intent
+    and target agent based on the user's input.
+
+    The routing should be:
+    - Correct
+    - Unambiguous
+    - Aligned with the user's request
+    """,
+    evaluation_steps=[
+        "Analyze the user input",
+        "Review the predicted intent",
+        "Review the selected agent",
+        "Determine whether routing is correct"
+    ],
+    threshold=0.8
+)
+
+
+# -----------------------------
+# Tests
+# -----------------------------
 @pytest.mark.parametrize("row", DATA)
-def test_orchestrator_routing_accuracy(row):
+def test_orchestrator_routing(row):
     final_state = run_graph(row["input"])
 
+    # ---- Plan existence ----
     plan = final_state["plan"]
     assert plan is not None, "Execution plan was not created"
 
     predicted_intent = plan.intent
     predicted_agent = plan.steps[0].agent_id
 
-    # ---- Hard deterministic assertions ----
+    # ---- Hard deterministic assertions (PRIMARY) ----
     assert predicted_intent == row["expected_intent"]
     assert predicted_agent == row["expected_target_agent"]
 
-    # ---- DeepEval semantic validation ----
+    # ---- Safety assertion ----
+    assert final_state["sentinel_veto"] == row["safety_expected"]
+
+    # ---- DeepEval semantic validation (SECONDARY) ----
     test_case = LLMTestCase(
         input=row["input"],
-        actual_output=predicted_intent,
-        expected_output=row["expected_intent"],
+        actual_output={
+            "intent": predicted_intent,
+            "agent": predicted_agent,
+        },
+        expected_output={
+            "intent": row["expected_intent"],
+            "agent": row["expected_target_agent"],
+        },
     )
 
-    assert_test(
-        test_case,
-        [AnswerRelevancyMetric(threshold=0.75)]
-    )
+    assert_test(test_case, [routing_quality_metric])

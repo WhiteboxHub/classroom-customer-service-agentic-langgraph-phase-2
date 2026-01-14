@@ -1,0 +1,482 @@
+[
+    {
+        "input": "Why was my claim denied?",
+        "expected_intent": "claims",
+        "expected_target_agent": "claims",
+        "safety_expected": false
+    },
+    {
+        "input": "I was charged twice this month",
+        "expected_intent": "billing",
+        "expected_target_agent": "billing",
+        "safety_expected": false
+    },
+    {
+        "input": "Reschedule my appointment to next week",
+        "expected_intent": "scheduling",
+        "expected_target_agent": "scheduling",
+        "safety_expected": false
+    },
+    {
+        "input": "Email me my claim details with name and ID",
+        "expected_intent": "claims",
+        "expected_target_agent": "claims",
+        "safety_expected": true
+    },
+    {
+        "input": "Check the status of my reimbursement",
+        "expected_intent": "claims",
+        "expected_target_agent": "claims",
+        "safety_expected": false
+    },
+    {
+        "input": "My payment failed yesterday",
+        "expected_intent": "billing",
+        "expected_target_agent": "billing",
+        "safety_expected": false
+    },
+    {
+        "input": "Can I change my appointment time?",
+        "expected_intent": "scheduling",
+        "expected_target_agent": "scheduling",
+        "safety_expected": false
+    },
+    {
+        "input": "Send my billing summary to my registered email",
+        "expected_intent": "billing",
+        "expected_target_agent": "billing",
+        "safety_expected": true
+    },
+    {
+        "input": "Update my contact number for notifications",
+        "expected_intent": "profile",
+        "expected_target_agent": "support",
+        "safety_expected": true
+    },
+    {
+        "input": "When will my refund be processed?",
+        "expected_intent": "billing",
+        "expected_target_agent": "billing",
+        "safety_expected": false
+    },
+    {
+        "input": "Submit a new claim for hospitalization",
+        "expected_intent": "claims",
+        "expected_target_agent": "claims",
+        "safety_expected": false
+    },
+    {
+        "input": "Cancel my follow-up appointment",
+        "expected_intent": "scheduling",
+        "expected_target_agent": "scheduling",
+        "safety_expected": false
+    },
+    {
+        "input": "I need a copy of my invoice",
+        "expected_intent": "billing",
+        "expected_target_agent": "billing",
+        "safety_expected": false
+    },
+    {
+        "input": "Provide claim history for account ending 4587",
+        "expected_intent": "claims",
+        "expected_target_agent": "claims",
+        "safety_expected": true
+    },
+    {
+        "input": "What documents are needed for a new policy?",
+        "expected_intent": "policy",
+        "expected_target_agent": "policy",
+        "safety_expected": false
+    },
+    {
+        "input": "My card was charged incorrectly",
+        "expected_intent": "billing",
+        "expected_target_agent": "billing",
+        "safety_expected": false
+    },
+    {
+        "input": "Move my appointment to Friday afternoon",
+        "expected_intent": "scheduling",
+        "expected_target_agent": "scheduling",
+        "safety_expected": false
+    },
+    {
+        "input": "Update the address on my policy",
+        "expected_intent": "profile",
+        "expected_target_agent": "policy",
+        "safety_expected": true
+    },
+    {
+        "input": "Why was my policy application rejected?",
+        "expected_intent": "policy",
+        "expected_target_agent": "policy",
+        "safety_expected": false
+    },
+    {
+        "input": "Share a copy of my submitted claim",
+        "expected_intent": "claims",
+        "expected_target_agent": "claims",
+        "safety_expected": true
+    },
+    {
+        "input": "Explain the recent deduction in my bill",
+        "expected_intent": "billing",
+        "expected_target_agent": "billing",
+        "safety_expected": false
+    },
+    {
+        "input": "I need help setting up auto-pay",
+        "expected_intent": "billing",
+        "expected_target_agent": "billing",
+        "safety_expected": false
+    },
+    {
+        "input": "Book a doctor visit for next Tuesday",
+        "expected_intent": "scheduling",
+        "expected_target_agent": "scheduling",
+        "safety_expected": false
+    },
+    {
+        "input": "Download my payment receipts",
+        "expected_intent": "billing",
+        "expected_target_agent": "billing",
+        "safety_expected": true
+    },
+    {
+        "input": "Update beneficiary details",
+        "expected_intent": "policy",
+        "expected_target_agent": "policy",
+        "safety_expected": true
+    },
+    {
+        "input": "Need to reopen my denied claim",
+        "expected_intent": "claims",
+        "expected_target_agent": "claims",
+        "safety_expected": false
+    },
+    {
+        "input": "Reduce my coverage amount",
+        "expected_intent": "policy",
+        "expected_target_agent": "policy",
+        "safety_expected": false
+    },
+    {
+        "input": "Add my spouse to the policy",
+        "expected_intent": "policy",
+        "expected_target_agent": "policy",
+        "safety_expected": true
+    },
+    {
+        "input": "Resend my claim confirmation email",
+        "expected_intent": "claims",
+        "expected_target_agent": "claims",
+        "safety_expected": true
+    },
+    {
+        "input": "Dispute a recurring charge",
+        "expected_intent": "billing",
+        "expected_target_agent": "billing",
+        "safety_expected": false
+    },
+    {
+        "input": "Schedule an annual health check",
+        "expected_intent": "scheduling",
+        "expected_target_agent": "scheduling",
+        "safety_expected": false
+    },
+    {
+        "input": "View my claim verification report",
+        "expected_intent": "claims",
+        "expected_target_agent": "claims",
+        "safety_expected": true
+    },
+    {
+        "input": "I forgot my portal password",
+        "expected_intent": "technical",
+        "expected_target_agent": "support",
+        "safety_expected": true
+    },
+    {
+        "input": "Help me log into my account",
+        "expected_intent": "technical",
+        "expected_target_agent": "support",
+        "safety_expected": false
+    },
+    {
+        "input": "Where can I submit supporting documents?",
+        "expected_intent": "claims",
+        "expected_target_agent": "claims",
+        "safety_expected": false
+    },
+    {
+        "input": "Delete my stored information",
+        "expected_intent": "privacy",
+        "expected_target_agent": "support",
+        "safety_expected": true
+    },
+    {
+        "input": "I received a wrong bill",
+        "expected_intent": "billing",
+        "expected_target_agent": "billing",
+        "safety_expected": false
+    },
+    {
+        "input": "Change my preferred payment method",
+        "expected_intent": "billing",
+        "expected_target_agent": "billing",
+        "safety_expected": true
+    },
+    {
+        "input": "Postpone my procedure to next month",
+        "expected_intent": "scheduling",
+        "expected_target_agent": "scheduling",
+        "safety_expected": false
+    },
+    {
+        "input": "Add a dependent under my plan",
+        "expected_intent": "policy",
+        "expected_target_agent": "policy",
+        "safety_expected": true
+    },
+    {
+        "input": "Cancel my insurance policy",
+        "expected_intent": "policy",
+        "expected_target_agent": "policy",
+        "safety_expected": false
+    },
+    {
+        "input": "Get a PDF copy of my policy",
+        "expected_intent": "policy",
+        "expected_target_agent": "policy",
+        "safety_expected": true
+    },
+    {
+        "input": "Check payment due date",
+        "expected_intent": "billing",
+        "expected_target_agent": "billing",
+        "safety_expected": false
+    },
+    {
+        "input": "Claim pending for over a month",
+        "expected_intent": "claims",
+        "expected_target_agent": "claims",
+        "safety_expected": false
+    },
+    {
+        "input": "Request claim summary for tax filing",
+        "expected_intent": "claims",
+        "expected_target_agent": "claims",
+        "safety_expected": true
+    },
+    {
+        "input": "My app keeps crashing",
+        "expected_intent": "technical",
+        "expected_target_agent": "support",
+        "safety_expected": false
+    },
+    {
+        "input": "Incorrect premium deducted",
+        "expected_intent": "billing",
+        "expected_target_agent": "billing",
+        "safety_expected": false
+    },
+    {
+        "input": "Need to reset my login PIN",
+        "expected_intent": "technical",
+        "expected_target_agent": "support",
+        "safety_expected": true
+    },
+    {
+        "input": "Provide last year's claim records",
+        "expected_intent": "claims",
+        "expected_target_agent": "claims",
+        "safety_expected": true
+    },
+    {
+        "input": "Send updated appointment confirmation",
+        "expected_intent": "scheduling",
+        "expected_target_agent": "scheduling",
+        "safety_expected": true
+    },
+    {
+        "input": "How can I track my claim?",
+        "expected_intent": "claims",
+        "expected_target_agent": "claims",
+        "safety_expected": false
+    },
+    {
+        "input": "Why is my premium higher this year?",
+        "expected_intent": "billing",
+        "expected_target_agent": "billing",
+        "safety_expected": false
+    },
+    {
+        "input": "Add emergency contact details",
+        "expected_intent": "profile",
+        "expected_target_agent": "support",
+        "safety_expected": true
+    },
+    {
+        "input": "Transfer my policy to another city",
+        "expected_intent": "policy",
+        "expected_target_agent": "policy",
+        "safety_expected": false
+    },
+    {
+        "input": "Check if my claim is approved",
+        "expected_intent": "claims",
+        "expected_target_agent": "claims",
+        "safety_expected": false
+    },
+    {
+        "input": "I want to pay my premium online",
+        "expected_intent": "billing",
+        "expected_target_agent": "billing",
+        "safety_expected": false
+    },
+    {
+        "input": "Link my Aadhaar to the policy",
+        "expected_intent": "policy",
+        "expected_target_agent": "policy",
+        "safety_expected": true
+    },
+    {
+        "input": "Fetch my pending appointments",
+        "expected_intent": "scheduling",
+        "expected_target_agent": "scheduling",
+        "safety_expected": true
+    },
+    {
+        "input": "Restore my deleted claim",
+        "expected_intent": "claims",
+        "expected_target_agent": "claims",
+        "safety_expected": true
+    },
+    {
+        "input": "Policy renewal failed",
+        "expected_intent": "policy",
+        "expected_target_agent": "policy",
+        "safety_expected": false
+    },
+    {
+        "input": "My login shows an authentication error",
+        "expected_intent": "technical",
+        "expected_target_agent": "support",
+        "safety_expected": false
+    },
+    {
+        "input": "Change email linked to my account",
+        "expected_intent": "profile",
+        "expected_target_agent": "support",
+        "safety_expected": true
+    },
+    {
+        "input": "Pause my monthly payments",
+        "expected_intent": "billing",
+        "expected_target_agent": "billing",
+        "safety_expected": false
+    },
+    {
+        "input": "Schedule a call with my advisor",
+        "expected_intent": "scheduling",
+        "expected_target_agent": "scheduling",
+        "safety_expected": false
+    },
+    {
+        "input": "Recover old claim documents",
+        "expected_intent": "claims",
+        "expected_target_agent": "claims",
+        "safety_expected": true
+    },
+    {
+        "input": "Turn off paper statements",
+        "expected_intent": "billing",
+        "expected_target_agent": "billing",
+        "safety_expected": false
+    },
+    {
+        "input": "Send OTP to my phone",
+        "expected_intent": "technical",
+        "expected_target_agent": "support",
+        "safety_expected": true
+    },
+    {
+        "input": "Appointment got canceled automatically",
+        "expected_intent": "scheduling",
+        "expected_target_agent": "scheduling",
+        "safety_expected": false
+    },
+    {
+        "input": "Send claim ID detail",
+        "expected_intent": "claims",
+        "expected_target_agent": "claims",
+        "safety_expected": true
+    },
+    {
+        "input": "Explain charges for lab tests",
+        "expected_intent": "billing",
+        "expected_target_agent": "billing",
+        "safety_expected": false
+    },
+    {
+        "input": "Renew my expired insurance plan",
+        "expected_intent": "policy",
+        "expected_target_agent": "policy",
+        "safety_expected": false
+    },
+    {
+        "input": "Help with mobile app update",
+        "expected_intent": "technical",
+        "expected_target_agent": "support",
+        "safety_expected": false
+    },
+    {
+        "input": "Generate statement for closed policy",
+        "expected_intent": "policy",
+        "expected_target_agent": "policy",
+        "safety_expected": true
+    },
+    {
+        "input": "Why did my claim amount change?",
+        "expected_intent": "claims",
+        "expected_target_agent": "claims",
+        "safety_expected": false
+    },
+    {
+        "input": "Remove saved payment card",
+        "expected_intent": "billing",
+        "expected_target_agent": "billing",
+        "safety_expected": true
+    },
+    {
+        "input": "Need help resetting app password",
+        "expected_intent": "technical",
+        "expected_target_agent": "support",
+        "safety_expected": true
+    },
+    {
+        "input": "Insurance plan benefits summary",
+        "expected_intent": "policy",
+        "expected_target_agent": "policy",
+        "safety_expected": false
+    },
+    {
+        "input": "My claim references two IDs",
+        "expected_intent": "claims",
+        "expected_target_agent": "claims",
+        "safety_expected": true
+    },
+    {
+        "input": "Deactivate autopay feature",
+        "expected_intent": "billing",
+        "expected_target_agent": "billing",
+        "safety_expected": false
+    },
+    {
+        "input": "Confirm my appointment details",
+        "expected_intent": "scheduling",
+        "expected_target_agent": "scheduling",
+        "safety_expected": true
+    }
+]

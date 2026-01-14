@@ -5,7 +5,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-POSTGRES_URL = os.getenv("POSTGRES_URL", "postgresql://xyz_user:xyz_password@localhost:5432/xyz_db")
+POSTGRES_URL = os.getenv(
+    "POSTGRES_URL",
+    "postgresql://xyz_user:xyz_password@localhost:5432/xyz_db"
+)
 
 async def seed_db():
     print("Connecting to database...")
@@ -17,12 +20,14 @@ async def seed_db():
 
     print("Creating tables...")
     await conn.execute("""
+        -- ✅ Members table
         CREATE TABLE IF NOT EXISTS members (
             member_id VARCHAR(50) PRIMARY KEY,
             name VARCHAR(100),
             plan_type VARCHAR(50)
         );
-        
+
+        -- Claims table
         CREATE TABLE IF NOT EXISTS claims (
             claim_id VARCHAR(50) PRIMARY KEY,
             member_id VARCHAR(50),
@@ -32,6 +37,21 @@ async def seed_db():
             denial_code VARCHAR(10),
             description TEXT
         );
+
+        -- Conversation summaries table (Fix for your error)
+        CREATE TABLE IF NOT EXISTS conversation_summaries (
+            id SERIAL PRIMARY KEY,
+            session_id TEXT NOT NULL,
+            step_id TEXT NOT NULL,
+            node_name TEXT NOT NULL,
+            summary TEXT NOT NULL,
+            metadata JSONB NOT NULL DEFAULT '{}'::jsonb,
+            created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+        );
+
+        -- Helpful index for faster retrieval
+        CREATE INDEX IF NOT EXISTS idx_conversation_summaries_session_created
+        ON conversation_summaries (session_id, created_at DESC);
     """)
 
     print("Seeding members...")
@@ -53,7 +73,7 @@ async def seed_db():
         ('CLM-3001', 'MRN-11223', 'Processing', 1200.00, '2025-03-01', NULL, 'ER Visit')
         ON CONFLICT (claim_id) DO NOTHING;
     """)
-    
+
     print("Database seeded successfully.")
     await conn.close()
 

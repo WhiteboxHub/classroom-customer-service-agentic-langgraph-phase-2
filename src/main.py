@@ -7,7 +7,7 @@ from pydantic import BaseModel
 from contextlib import asynccontextmanager
 from typing import Dict, Any
 from datetime import datetime
-
+import json
 from src.database import database
 from src.core.graph.engine import Engine
 from src.core.graph.state_schema import AgentState
@@ -114,11 +114,14 @@ async def add_memory_summaries(state: AgentState, session_id: str):
             step_id="execution_complete",
             node_name="system",
             summary=summary,
-            metadata={
-                "plan": state.get("plan").dict() if state.get("plan") else None,
-                "tool_calls_count": len(state.get("tool_calls", [])),
-                "sentinel_veto": state.get("sentinel_veto") is not None,
-            },
+           metadata=json.dumps(
+                    {
+                        "plan": state.get("plan").dict() if state.get("plan") else None,
+                        "tool_calls_count": len(state.get("tool_calls", [])),
+                        "sentinel_veto": state.get("sentinel_veto") is not None,
+                    },
+                    default=str
+                )
         )
     except Exception as e:
         # Graceful degradation: don't fail if memory fails

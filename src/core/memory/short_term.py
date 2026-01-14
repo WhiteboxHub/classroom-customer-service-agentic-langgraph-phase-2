@@ -24,6 +24,7 @@ class ShortTermMemory:
         step_id: str,
         node_name: str,
         summary: str,
+        # summary=json.dumps(state.get("plan"), default=str),
         metadata: Dict[str, Any] = None,
     ):
         """
@@ -48,9 +49,9 @@ class ShortTermMemory:
                     "session_id": session_id,
                     "step_id": step_id,
                     "node_name": node_name,
-                    "summary": summary,
+                    "summary": str(summary),
                     "metadata": metadata or {},
-                    "created_at": datetime.utcnow().isoformat(),
+                    "created_at": datetime.utcnow(),
                 },
             )
             print(f"[ShortTermMemory] Saved summary for {session_id}/{step_id}")
