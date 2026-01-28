@@ -1,0 +1,249 @@
+{
+  "train": [
+    {
+      "text": "My claim #12345 was denied, can you check why?",
+      "intent": "claims",
+      "confidence": 0.98
+    },
+    {
+      "text": "Can you tell me the status of my claim from last month?",
+      "intent": "claims",
+      "confidence": 0.97
+    },
+    {
+      "text": "My reimbursement claim is still pending, any update?",
+      "intent": "claims",
+      "confidence": 0.96
+    },
+    {
+      "text": "Why did my claim get rejected even though I submitted all documents?",
+      "intent": "claims",
+      "confidence": 0.95
+    },
+    {
+      "text": "The portal says claim under review, what does that mean?",
+      "intent": "claims",
+      "confidence": 0.94
+    },
+    {
+      "text": "My claim shows settled but I didn’t receive payment yet.",
+      "intent": "claims",
+      "confidence": 0.96
+    },
+    {
+      "text": "Can you help me appeal a denied claim?",
+      "intent": "claims",
+      "confidence": 0.95
+    },
+    {
+      "text": "How long does it usually take for claim approval?",
+      "intent": "claims",
+      "confidence": 0.93
+    },
+    {
+      "text": "My claim got partially approved, why not the full amount?",
+      "intent": "claims",
+      "confidence": 0.94
+    },
+    {
+      "text": "I need the claim settlement details for my records.",
+      "intent": "claims",
+      "confidence": 0.93
+    },
+
+    {
+      "text": "My invoice shows $250 but I only owe $150, what's wrong?",
+      "intent": "billing",
+      "confidence": 0.97
+    },
+    {
+      "text": "I think I was charged twice for the same appointment.",
+      "intent": "billing",
+      "confidence": 0.96
+    },
+    {
+      "text": "Why is there an extra fee added to my bill?",
+      "intent": "billing",
+      "confidence": 0.95
+    },
+    {
+      "text": "My payment failed but money was deducted from my account.",
+      "intent": "billing",
+      "confidence": 0.96
+    },
+    {
+      "text": "Can you resend my invoice to my email?",
+      "intent": "billing",
+      "confidence": 0.94
+    },
+    {
+      "text": "I paid already but it still shows pending payment.",
+      "intent": "billing",
+      "confidence": 0.95
+    },
+    {
+      "text": "How can I download my billing receipt?",
+      "intent": "billing",
+      "confidence": 0.93
+    },
+    {
+      "text": "I want a breakdown of the charges on my bill.",
+      "intent": "billing",
+      "confidence": 0.92
+    },
+    {
+      "text": "Why am I being billed if insurance is supposed to cover it?",
+      "intent": "billing",
+      "confidence": 0.94
+    },
+    {
+      "text": "Can you refund the extra amount I paid by mistake?",
+      "intent": "billing",
+      "confidence": 0.95
+    },
+
+    {
+      "text": "I need to reschedule my dentist appointment for next week",
+      "intent": "scheduling",
+      "confidence": 0.95
+    },
+    {
+      "text": "Can you book an appointment with a dermatologist tomorrow?",
+      "intent": "scheduling",
+      "confidence": 0.96
+    },
+    {
+      "text": "Please cancel my appointment for today.",
+      "intent": "scheduling",
+      "confidence": 0.97
+    },
+    {
+      "text": "Are there any available slots on Friday morning?",
+      "intent": "scheduling",
+      "confidence": 0.95
+    },
+    {
+      "text": "Move my appointment to next Monday evening.",
+      "intent": "scheduling",
+      "confidence": 0.94
+    },
+    {
+      "text": "I missed my appointment, can I rebook it?",
+      "intent": "scheduling",
+      "confidence": 0.95
+    },
+    {
+      "text": "Can you confirm my appointment date and time?",
+      "intent": "scheduling",
+      "confidence": 0.93
+    },
+    {
+      "text": "I want to schedule a follow-up visit next month.",
+      "intent": "scheduling",
+      "confidence": 0.94
+    },
+    {
+      "text": "Can you change my appointment to a different doctor?",
+      "intent": "scheduling",
+      "confidence": 0.93
+    },
+    {
+      "text": "I need an urgent appointment today, anything available?",
+      "intent": "scheduling",
+      "confidence": 0.95
+    },
+
+    {
+      "text": "I'm not sure where to start with my health insurance question",
+      "intent": "triage",
+      "confidence": 0.92
+    },
+    {
+      "text": "I need help but I don’t know which option to choose.",
+      "intent": "triage",
+      "confidence": 0.93
+    },
+    {
+      "text": "Can you guide me on what to do next?",
+      "intent": "triage",
+      "confidence": 0.92
+    },
+    {
+      "text": "I have a problem but I’m not sure if it’s billing or claims.",
+      "intent": "triage",
+      "confidence": 0.94
+    },
+    {
+      "text": "I’m confused about my insurance process, can you help?",
+      "intent": "triage",
+      "confidence": 0.93
+    },
+    {
+      "text": "I need assistance but I don’t know where to go.",
+      "intent": "triage",
+      "confidence": 0.92
+    },
+    {
+      "text": "Can you tell me which department can solve my issue?",
+      "intent": "triage",
+      "confidence": 0.91
+    },
+    {
+      "text": "I have a question about my account but not sure what category it is.",
+      "intent": "triage",
+      "confidence": 0.92
+    },
+    {
+      "text": "Please help me, I don’t know what I should select in the menu.",
+      "intent": "triage",
+      "confidence": 0.90
+    },
+    {
+      "text": "I’m stuck and don’t know how to proceed.",
+      "intent": "triage",
+      "confidence": 0.91
+    }
+  ],
+
+  "test": [
+    {
+      "text": "Can you check if my claim has been approved?",
+      "intent": "claims"
+    },
+    {
+      "text": "My claim shows denied, what should I do now?",
+      "intent": "claims"
+    },
+    {
+      "text": "Why is my bill showing extra charges?",
+      "intent": "billing"
+    },
+    {
+      "text": "I paid already but it still shows due amount.",
+      "intent": "billing"
+    },
+    {
+      "text": "Can I reschedule my appointment to next week?",
+      "intent": "scheduling"
+    },
+    {
+      "text": "Please cancel my doctor appointment for tomorrow.",
+      "intent": "scheduling"
+    },
+    {
+      "text": "I don’t know where to raise my issue, can you help?",
+      "intent": "triage"
+    },
+    {
+      "text": "I am confused what to do regarding insurance, guide me.",
+      "intent": "triage"
+    }
+  ],
+
+  "label_map": {
+    "0": "billing",
+    "1": "claims",
+    "2": "scheduling",
+    "3": "triage"
+  }
+}

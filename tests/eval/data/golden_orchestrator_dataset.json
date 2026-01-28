@@ -1,0 +1,452 @@
+[
+  {
+    "id": "claims_001",
+    "input": "What is the status of my claim CLM-1001?",
+    "expected": {
+      "intent": "claims",
+      "target_agent": "claims"
+    },
+    "category": "claims_basic"
+  },
+  {
+    "id": "billing_001",
+    "input": "Why is my bill higher this month?",
+    "expected": {
+      "intent": "billing",
+      "target_agent": "billing"
+    },
+    "category": "billing_basic"
+  },
+  {
+    "id": "scheduling_001",
+    "input": "I need to reschedule my appointment",
+    "expected": {
+      "intent": "scheduling",
+      "target_agent": "scheduling"
+    },
+    "category": "scheduling_basic"
+  },
+  {
+    "id": "claims_002",
+    "input": "Can you check the status of my last claim?",
+    "expected": {
+      "intent": "claims",
+      "target_agent": "claims"
+    },
+    "category": "claims_basic"
+  },
+  {
+    "id": "claims_003",
+    "input": "Has my claim for the MRI scan been approved yet?",
+    "expected": {
+      "intent": "claims",
+      "target_agent": "claims"
+    },
+    "category": "claims_status"
+  },
+  {
+    "id": "claims_004",
+    "input": "Why was my recent claim denied?",
+    "expected": {
+      "intent": "claims",
+      "target_agent": "claims"
+    },
+    "category": "claims_denial"
+  },
+  {
+    "id": "claims_005",
+    "input": "I want to appeal a claim decision.",
+    "expected": {
+      "intent": "claims",
+      "target_agent": "claims"
+    },
+    "category": "claims_appeal"
+  },
+  {
+    "id": "claims_006",
+    "input": "How do I submit a new claim?",
+    "expected": {
+      "intent": "claims",
+      "target_agent": "claims"
+    },
+    "category": "claims_submission"
+  },
+  {
+    "id": "claims_007",
+    "input": "Can I upload documents for my existing claim?",
+    "expected": {
+      "intent": "claims",
+      "target_agent": "claims"
+    },
+    "category": "claims_documents"
+  },
+  {
+    "id": "claims_008",
+    "input": "I was paid less than I expected on my claim. Why?",
+    "expected": {
+      "intent": "claims",
+      "target_agent": "claims"
+    },
+    "category": "claims_payment"
+  },
+  {
+    "id": "claims_009",
+    "input": "When will I receive reimbursement for my claim?",
+    "expected": {
+      "intent": "claims",
+      "target_agent": "claims"
+    },
+    "category": "claims_payment"
+  },
+  {
+    "id": "claims_010",
+    "input": "Can you tell me which services were covered on my last claim?",
+    "expected": {
+      "intent": "claims",
+      "target_agent": "claims"
+    },
+    "category": "claims_coverage"
+  },
+  {
+    "id": "claims_011",
+    "input": "I think there’s an error on my claim, how do I fix it?",
+    "expected": {
+      "intent": "claims",
+      "target_agent": "claims"
+    },
+    "category": "claims_correction"
+  },
+  {
+    "id": "claims_012",
+    "input": "Do I need preauthorization before filing a claim for surgery?",
+    "expected": {
+      "intent": "claims",
+      "target_agent": "claims"
+    },
+    "category": "claims_preauth"
+  },
+  {
+    "id": "claims_013",
+    "input": "What information is required on a claim form?",
+    "expected": {
+      "intent": "claims",
+      "target_agent": "claims"
+    },
+    "category": "claims_submission"
+  },
+  {
+    "id": "claims_014",
+    "input": "Can I check claims for my dependents as well?",
+    "expected": {
+      "intent": "claims",
+      "target_agent": "claims"
+    },
+    "category": "claims_family"
+  },
+  {
+    "id": "claims_015",
+    "input": "Show me a list of all claims from last year.",
+    "expected": {
+      "intent": "claims",
+      "target_agent": "claims"
+    },
+    "category": "claims_history"
+  },
+  {
+    "id": "billing_002",
+    "input": "Can you explain the charges on my latest statement?",
+    "expected": {
+      "intent": "billing",
+      "target_agent": "billing"
+    },
+    "category": "billing_basic"
+  },
+  {
+    "id": "billing_003",
+    "input": "I was charged twice for the same visit. Why?",
+    "expected": {
+      "intent": "billing",
+      "target_agent": "billing"
+    },
+    "category": "billing_dispute"
+  },
+  {
+    "id": "billing_004",
+    "input": "How can I dispute a billing error?",
+    "expected": {
+      "intent": "billing",
+      "target_agent": "billing"
+    },
+    "category": "billing_dispute"
+  },
+  {
+    "id": "billing_005",
+    "input": "What payment methods do you accept for my bill?",
+    "expected": {
+      "intent": "billing",
+      "target_agent": "billing"
+    },
+    "category": "billing_payment_options"
+  },
+  {
+    "id": "billing_006",
+    "input": "Can I set up a payment plan for my balance?",
+    "expected": {
+      "intent": "billing",
+      "target_agent": "billing"
+    },
+    "category": "billing_payment_plan"
+  },
+  {
+    "id": "billing_007",
+    "input": "When is my next bill due?",
+    "expected": {
+      "intent": "billing",
+      "target_agent": "billing"
+    },
+    "category": "billing_due_date"
+  },
+  {
+    "id": "billing_008",
+    "input": "I already paid, but it still shows a balance. What’s going on?",
+    "expected": {
+      "intent": "billing",
+      "target_agent": "billing"
+    },
+    "category": "billing_payment_issue"
+  },
+  {
+    "id": "billing_009",
+    "input": "How do I update the card on file for autopay?",
+    "expected": {
+      "intent": "billing",
+      "target_agent": "billing"
+    },
+    "category": "billing_autopay"
+  },
+  {
+    "id": "billing_010",
+    "input": "Can you send me an itemized bill for last month?",
+    "expected": {
+      "intent": "billing",
+      "target_agent": "billing"
+    },
+    "category": "billing_statement"
+  },
+  {
+    "id": "billing_011",
+    "input": "Why am I being billed for something my insurance should cover?",
+    "expected": {
+      "intent": "billing",
+      "target_agent": "billing"
+    },
+    "category": "billing_insurance_conflict"
+  },
+  {
+    "id": "billing_012",
+    "input": "I want to change my billing address.",
+    "expected": {
+      "intent": "billing",
+      "target_agent": "billing"
+    },
+    "category": "billing_profile_update"
+  },
+  {
+    "id": "billing_013",
+    "input": "Can I get a copy of all my bills for the last year?",
+    "expected": {
+      "intent": "billing",
+      "target_agent": "billing"
+    },
+    "category": "billing_history"
+  },
+  {
+    "id": "billing_014",
+    "input": "Do you charge any late fees if I miss a payment?",
+    "expected": {
+      "intent": "billing",
+      "target_agent": "billing"
+    },
+    "category": "billing_policy"
+  },
+  {
+    "id": "billing_015",
+    "input": "I received a collections notice. What should I do?",
+    "expected": {
+      "intent": "billing",
+      "target_agent": "billing"
+    },
+    "category": "billing_collections"
+  },
+  {
+    "id": "scheduling_002",
+    "input": "Can I book a new appointment for next week?",
+    "expected": {
+      "intent": "scheduling",
+      "target_agent": "scheduling"
+    },
+    "category": "scheduling_new"
+  },
+  {
+    "id": "scheduling_003",
+    "input": "I need to cancel my appointment tomorrow.",
+    "expected": {
+      "intent": "scheduling",
+      "target_agent": "scheduling"
+    },
+    "category": "scheduling_cancel"
+  },
+  {
+    "id": "scheduling_004",
+    "input": "What times are available for a follow-up visit?",
+    "expected": {
+      "intent": "scheduling",
+      "target_agent": "scheduling"
+    },
+    "category": "scheduling_availability"
+  },
+  {
+    "id": "scheduling_005",
+    "input": "Can I change my appointment to a virtual visit instead of in person?",
+    "expected": {
+      "intent": "scheduling",
+      "target_agent": "scheduling"
+    },
+    "category": "scheduling_type_change"
+  },
+  {
+    "id": "scheduling_006",
+    "input": "I missed my appointment. How do I reschedule?",
+    "expected": {
+      "intent": "scheduling",
+      "target_agent": "scheduling"
+    },
+    "category": "scheduling_reschedule"
+  },
+  {
+    "id": "scheduling_007",
+    "input": "Can you remind me what time my appointment is on Friday?",
+    "expected": {
+      "intent": "scheduling",
+      "target_agent": "scheduling"
+    },
+    "category": "scheduling_lookup"
+  },
+  {
+    "id": "scheduling_008",
+    "input": "I want to schedule an annual physical with my primary doctor.",
+    "expected": {
+      "intent": "scheduling",
+      "target_agent": "scheduling"
+    },
+    "category": "scheduling_new"
+  },
+  {
+    "id": "scheduling_009",
+    "input": "Is there anything available after 5 PM this week?",
+    "expected": {
+      "intent": "scheduling",
+      "target_agent": "scheduling"
+    },
+    "category": "scheduling_availability"
+  },
+  {
+    "id": "scheduling_010",
+    "input": "Can I schedule an appointment for my child under my account?",
+    "expected": {
+      "intent": "scheduling",
+      "target_agent": "scheduling"
+    },
+    "category": "scheduling_family"
+  },
+  {
+    "id": "scheduling_011",
+    "input": "How far in advance can I book an appointment?",
+    "expected": {
+      "intent": "scheduling",
+      "target_agent": "scheduling"
+    },
+    "category": "scheduling_policy"
+  },
+  {
+    "id": "scheduling_012",
+    "input": "I want to change the provider for my upcoming appointment.",
+    "expected": {
+      "intent": "scheduling",
+      "target_agent": "scheduling"
+    },
+    "category": "scheduling_provider_change"
+  },
+  {
+    "id": "scheduling_013",
+    "input": "Can I add a new patient to my appointment slot?",
+    "expected": {
+      "intent": "scheduling",
+      "target_agent": "scheduling"
+    },
+    "category": "scheduling_multi_patient"
+  },
+  {
+    "id": "scheduling_014",
+    "input": "Do you have same-day appointments available?",
+    "expected": {
+      "intent": "scheduling",
+      "target_agent": "scheduling"
+    },
+    "category": "scheduling_availability"
+  },
+  {
+    "id": "scheduling_015",
+    "input": "What is your cancellation policy for appointments?",
+    "expected": {
+      "intent": "scheduling",
+      "target_agent": "scheduling"
+    },
+    "category": "scheduling_policy"
+  },
+  {
+    "id": "mixed_001",
+    "input": "I want to check the status of my claim and also understand why my bill is so high.",
+    "expected": {
+      "intent": "claims",
+      "target_agent": "claims"
+    },
+    "category": "claims_multitopic"
+  },
+  {
+    "id": "mixed_002",
+    "input": "Before I schedule, I need to know if this visit will be covered or show up on my bill.",
+    "expected": {
+      "intent": "scheduling",
+      "target_agent": "scheduling"
+    },
+    "category": "scheduling_precheck"
+  },
+  {
+    "id": "billing_016",
+    "input": "Can I get a receipt for my last payment?",
+    "expected": {
+      "intent": "billing",
+      "target_agent": "billing"
+    },
+    "category": "billing_receipt"
+  },
+  {
+    "id": "claims_016",
+    "input": "Was my emergency room visit claim processed yet?",
+    "expected": {
+      "intent": "claims",
+      "target_agent": "claims"
+    },
+    "category": "claims_status"
+  },
+  {
+    "id": "scheduling_016",
+    "input": "Reschedule my cardiology appointment to next month.",
+    "expected": {
+      "intent": "scheduling",
+      "target_agent": "scheduling"
+    },
+    "category": "scheduling_reschedule"
+  }
+]
