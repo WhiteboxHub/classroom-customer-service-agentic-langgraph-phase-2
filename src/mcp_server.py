@@ -1,5 +1,5 @@
-from src.database import database
-# from database import database
+# from src.database import database
+from database import database
 
 
 class MCPServer:

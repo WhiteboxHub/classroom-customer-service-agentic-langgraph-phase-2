@@ -29,7 +29,7 @@ def run():
 
     # 4️⃣ Initial blackboard state
     initial_state: AgentState = {
-        "messages": [HumanMessage(content="why this month bill is twice for me ")],
+        "messages": [HumanMessage(content="what is the claims status for my last accident?")],
         "plan": None,
         "current_step": None,
         "next_step": None,
@@ -46,7 +46,7 @@ def run():
 
     final_state = asyncio.run(graph.ainvoke(initial_state))
 
-    # 6️⃣ Print results
+
     print("\n========== FINAL MESSAGE ==========")
     print(final_state["messages"][-1].content)
 

@@ -8,14 +8,14 @@ from typing import Dict, Any
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
 from langchain_core.messages import AIMessage
-from src.core.llm import get_llm
-from src.core.graph.state_schema import AgentState, ToolCall, AuditEvent
-from src.core.security.audit_logger import AuditLogger
-from src.interfaces.mcp_client import MCPClient
-# from core.llm import get_llm
-# from core.graph.state_schema import AgentState, ToolCall, AuditEvent
-# from core.security.audit_logger import AuditLogger
-# from interfaces.mcp_client import MCPClient
+# from src.core.llm import get_llm
+# from src.core.graph.state_schema import AgentState, ToolCall, AuditEvent
+# from src.core.security.audit_logger import AuditLogger
+# from src.interfaces.mcp_client import MCPClient
+from core.llm import get_llm
+from core.graph.state_schema import AgentState, ToolCall, AuditEvent
+from core.security.audit_logger import AuditLogger
+from interfaces.mcp_client import MCPClient
 
 mcp_client = MCPClient()
 audit_logger = AuditLogger()
@@ -49,26 +49,26 @@ async def billing_agent_node(state: AgentState) -> Dict[str, Any]:
     llm = get_llm("billing")
     
     system_prompt = """You are a Billing Assistant for XYZ Corp.
-You handle invoice queries, payment processing, and ledger reconciliation.
-Ensure all financial data is handled with strict accuracy.
+            You handle invoice queries, payment processing, and ledger reconciliation.
+            Ensure all financial data is handled with strict accuracy.
 
-WARNING: Write operations (process_payment) require human approval.
+            WARNING: Write operations (process_payment) require human approval.
 
-Available tools:
-{tools}
+            Available tools:
+            {tools}
 
-Respond with JSON:
-{{
-    "reasoning": "Why you need these tools",
-    "tool_calls": [
-        {{
-            "tool_name": "check_balance",
-            "arguments": {{"account_id": "ACC-123"}}
-        }}
-    ],
-    "response_template": "Draft response using {{tool_result}}"
-}}"""
-    
+            Respond with JSON:
+            {{
+                "reasoning": "Why you need these tools",
+                "tool_calls": [
+                    {{
+                        "tool_name": "check_balance",
+                        "arguments": {{"account_id": "ACC-123"}}
+                    }}
+                ],
+                "response_template": "Draft response using {{tool_result}}"
+            }}"""
+                
     prompt = ChatPromptTemplate.from_messages([
         ("system", system_prompt),
         ("user", "User query: {query}\n\nDetermine which tools to use."),

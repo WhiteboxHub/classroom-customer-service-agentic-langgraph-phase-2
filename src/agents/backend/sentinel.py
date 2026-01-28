@@ -9,12 +9,12 @@ from typing import Dict, Any, Literal
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
 from langchain_core.messages import AIMessage
-from src.core.llm import get_llm
-from src.core.graph.state_schema import AgentState, AuditEvent
-from src.core.security.audit_logger import AuditLogger
-# from core.llm import get_llm
-# from core.graph.state_schema import AgentState, AuditEvent
-# from core.security.audit_logger import AuditLogger
+# from src.core.llm import get_llm
+# from src.core.graph.state_schema import AgentState, AuditEvent
+# from src.core.security.audit_logger import AuditLogger
+from core.llm import get_llm
+from core.graph.state_schema import AgentState, AuditEvent
+from core.security.audit_logger import AuditLogger
 
 audit_logger = AuditLogger()
 
@@ -56,28 +56,28 @@ async def sentinel_node(state: AgentState) -> Dict[str, Any]:
     llm = get_llm("sentinel")  # Temperature 0.0 for deterministic safety checks
     
     system_prompt = """You are the Compliance Sentinel for XYZ Corp's Customer Call Center.
-Your role is to ensure all operations comply with:
-- HIPAA regulations (healthcare data privacy)
-- Financial regulations (PCI-DSS for payments)
-- Company policies (fraud prevention, data retention)
-- Ethical guidelines (no discrimination, fair treatment)
+        Your role is to ensure all operations comply with:
+        - HIPAA regulations (healthcare data privacy)
+        - Financial regulations (PCI-DSS for payments)
+        - Company policies (fraud prevention, data retention)
+        - Ethical guidelines (no discrimination, fair treatment)
 
-Analyze the execution plan and tool calls for:
-1. PII exposure risks
-2. Unauthorized data access
-3. Financial transaction anomalies
-4. Policy violations
-5. Security threats
+        Analyze the execution plan and tool calls for:
+        1. PII exposure risks
+        2. Unauthorized data access
+        3. Financial transaction anomalies
+        4. Policy violations
+        5. Security threats
 
-Respond with JSON:
-{{
-    "safe": true|false,
-    "confidence": 0.0-1.0,
-    "violations": ["list of detected violations"],
-    "reasoning": "Detailed explanation",
-    "recommendation": "proceed|block|require_approval"
-}}"""
-    
+        Respond with JSON:
+        {{
+            "safe": true|false,
+            "confidence": 0.0-1.0,
+            "violations": ["list of detected violations"],
+            "reasoning": "Detailed explanation",
+            "recommendation": "proceed|block|require_approval"
+        }}"""
+            
     prompt = ChatPromptTemplate.from_messages([
         ("system", system_prompt),
         ("user", "Analyze this execution context for safety/compliance:\n\n{context}\n\nShould execution proceed?"),
