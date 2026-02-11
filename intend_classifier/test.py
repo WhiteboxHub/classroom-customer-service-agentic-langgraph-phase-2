@@ -10,9 +10,16 @@ clf = pipeline(
     device=-1   
 )
 
+# clf = pipeline(
+#     "text-classification",
+#     model="./distilbert-lora",
+#     tokenizer="./distilbert-lora",
+#     device=-1   
+# )
+
 print("Step 3: Pipeline loaded ")
 
 print("Step 4: Predicting...")
-print(clf("why is my bill double this month"))
+print(clf("why is my claims status pending"))
 
 print("okhh  Done")

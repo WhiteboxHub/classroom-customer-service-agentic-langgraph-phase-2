@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 POSTGRES_URL = os.getenv(
-    "POSTGRES_URL",
+    "DATABASE_URL",
     "postgresql://xyz_user:xyz_password@localhost:5432/xyz_db"
 )
 

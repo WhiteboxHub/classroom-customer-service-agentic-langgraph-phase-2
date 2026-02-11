@@ -8,49 +8,26 @@ from datetime import datetime
 from typing import Dict, Any
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
-# from src.core.llm import get_llm
-# from src.core.graph.state_schema import AgentState, ExecutionPlan, PlanStep, AuditEvent
-# from src.core.security.audit_logger import AuditLogger
-from core.llm import get_llm
-from core.graph.state_schema import AgentState, ExecutionPlan, PlanStep, AuditEvent
-from core.security.audit_logger import AuditLogger
+from src.core.llm import get_llm
+from src.core.graph.state_schema import AgentState, ExecutionPlan, PlanStep, AuditEvent
+from src.core.security.audit_logger import AuditLogger
+# from core.llm import get_llm
+# from core.graph.state_schema import AgentState, ExecutionPlan, PlanStep, AuditEvent
+# from core.security.audit_logger import AuditLogger
 from transformers import pipeline
-# from prompts import ORCHESTRATION_PROMPT
 
 audit_logger = AuditLogger()
 
-from pathlib import Path
-from transformers import (
-    AutoTokenizer,
-    AutoModelForSequenceClassification,
-    pipeline
-)
+from transformers import pipeline
 
-print("Loading BERT intent classifier...")
-
-# orchestrator.py → agents → src → project root
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
-
-MODEL_PATH = PROJECT_ROOT / "intend_classifier" / "distilbert-intent"
-
-tokenizer = AutoTokenizer.from_pretrained(
-    MODEL_PATH,
-    local_files_only=True
-)
-
-model = AutoModelForSequenceClassification.from_pretrained(
-    MODEL_PATH,
-    local_files_only=True
-)
-
-intent_classifier = pipeline(
-    "text-classification",
-    model=model,
-    tokenizer=tokenizer,
-    device=-1
-)
-
-print("BERT intent classifier loaded")
+# print("Loading BERT intent classifier...")
+# intent_classifier = pipeline(
+#     "text-classification",
+#     model="./distilbert-intent",
+#     tokenizer="./distilbert-intent",
+#     device=-1
+# )
+# print("BERT intent classifier loaded")
 
 
 async def orchestrator_node(state: AgentState) -> Dict[str, Any]:
@@ -76,100 +53,89 @@ async def orchestrator_node(state: AgentState) -> Dict[str, Any]:
     user_query = last_message.content if hasattr(last_message, "content") else str(last_message)
 
         # --- BERT Intent Classification ---
-    bert_result = intent_classifier(user_query)[0]
+    # bert_result = intent_classifier(user_query)[0]
 
-    detected_intent = bert_result["label"].lower()
-    intent_confidence = float(bert_result["score"])
+    # detected_intent = bert_result["label"].lower()
+    # intent_confidence = float(bert_result["score"])
 
     # Safety guard
-    if detected_intent not in ["claims", "billing", "scheduling", "triage"]:
-        detected_intent = "triage"
+    # if detected_intent not in ["claims", "billing", "scheduling", "triage"]:
+    #     detected_intent = "triage"
 
     
     # LLM-powered intent classification and planning
     llm = get_llm("orchestrator", provider="groq")
 
     
-    system_prompt =  """
-    You are the Orchestrator for Kaiser Permanente Corp's Customer Call Center.
+    system_prompt = """You are the Orchestrator for XYZ Corp's Customer Call Center.
 
-    IMPORTANT:
-    - User intent has ALREADY been classified by a BERT-based model.
-    - You MUST NOT reclassify or infer intent.
-    - Your role is to validate, plan, and route execution ONLY.
+             Your job is to:
+             1. Classify the user's intent (claims, billing, scheduling, or triage)
+                a. Any query related to payments, invoices, balances, refunds, charges, or premiums MUST be classified as billing
+                b. Any query related to claim status, claim denial, claim approval, claim documents, or appeals MUST be classified as claims
+                c. Any query related to appointments, rescheduling, availability, or calendars MUST be classified as scheduling
+                 d. If the request does not clearly belong to one category, classify it as triage
 
-    You will be provided with:
-    - user_query
-    - detected_intent: one of ["claims", "billing", "scheduling", "triage"]
-    - intent_confidence: float between 0.0 and 1.0
+             2. Create a step-by-step execution plan that matches the classified intent
 
-    Your responsibilities are:
+             3. Determine which agent should handle the request
+             - If intent is "claims", target_agent MUST be "claims"
+             - If intent is "billing", target_agent MUST be "billing"
+             - If intent is "scheduling", target_agent MUST be "scheduling"
+             - If intent is "triage", choose the most appropriate agent or defer execution
 
-    1. Validate the detected intent
-    - If intent_confidence < 0.65, treat the request as "triage"
-    - If the detected intent clearly contradicts the user_query, downgrade to "triage"
-    - Do NOT change a high-confidence intent unless there is a clear mismatch
+             IMPORTANT CONSTRAINTS:
+             - The value of "agent_id" in every plan step MUST match the selected target_agent
+             - Do NOT use claims-related actions or tools unless the intent is "claims"
+             - Do NOT route to the claims agent unless the intent is clearly claims-related
+             - The example below is illustrative only; adapt actions and tools based on intent
 
-    2. Create a step-by-step execution plan based on the FINAL intent
-
-    3. Select the appropriate target agent
-    - intent == "claims" → target_agent MUST be "claims"
-    - intent == "billing" → target_agent MUST be "billing"
-    - intent == "scheduling" → target_agent MUST be "scheduling"
-    - intent == "triage" → choose the safest agent or defer execution
-
-    STRICT CONSTRAINTS:
-    - agent_id in EVERY plan step MUST match target_agent
-    - Do NOT include cross-domain actions or tools
-    - Do NOT simulate intent classification
-
-    Respond ONLY with valid JSON in this exact format:
-
-    {
-        "intent": "claims|billing|scheduling|triage",
-        "confidence": 0.0-1.0,
-        "target_agent": "claims|billing|scheduling",
-        "reasoning": "Short justification based on detected intent and confidence",
-        "plan_steps": [
-            {
-                "step_id": "step_1",
-                "agent_id": "billing",
-                "action": "specific_action_name",
-                "reasoning": "Why this step is needed",
-                "required_tools": ["tool_name_if_any"]
-            }
-        ]
-    }
-    """
+           Respond with JSON in this exact format:
+             {{
+                 "intent": "claims|billing|scheduling|triage",
+                 "confidence": 0.0-1.0,
+                 "target_agent": "claims|billing|scheduling",
+                 "reasoning": "Brief explanation",
+                 "plan_steps": [
+                     {{
+                         "step_id": "step_1",
+                        "agent_id": "claims",
+                        "action": "lookup_claim_status",
+                         "reasoning": "Why this step",
+                         "required_tools": ["lookup_claim_status"]
+                     }}
+                 ]
+            }}
+             """
 
 
     
-    # prompt = ChatPromptTemplate.from_messages([
-    #     ("system", system_prompt),
-    #     ("user", "User query: {query}\n\nAnalyze the intent and create an execution plan."),
-    # ])
     prompt = ChatPromptTemplate.from_messages([
         ("system", system_prompt),
-        (
-            "user",
-            "User query: {query}\n"
-            "Detected intent: {intent}\n"
-            "Intent confidence: {confidence}\n\n"
-            "Create an execution plan."
-        ),
+        ("user", "User query: {query}\n\nAnalyze the intent and create an execution plan."),
     ])
+    # prompt = ChatPromptTemplate.from_messages([
+    #     ("system", system_prompt),
+    #     (
+    #         "user",
+    #         "User query: {query}\n"
+    #         "Detected intent: {intent}\n"
+    #         "Intent confidence: {confidence}\n\n"
+    #         "Create an execution plan."
+    #     ),
+    # ])
     
     # Parse LLM output as JSON
     parser = JsonOutputParser()
     chain = prompt | llm | parser
     
     try:
-        # llm_response = await chain.ainvoke({"query": user_query})
-        llm_response = await chain.ainvoke({
-            "query": user_query,
-            "intent": detected_intent,
-            "confidence": intent_confidence,
-        })
+        llm_response = await chain.ainvoke({"query": user_query})
+        # llm_response = await chain.ainvoke({
+        #     "query": user_query,
+        #     "intent": detected_intent,
+        #     "confidence": intent_confidence,
+        # })
                 
         # Validate and structure the response
         intent = llm_response.get("intent", "triage")

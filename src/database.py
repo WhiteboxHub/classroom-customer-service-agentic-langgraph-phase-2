@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-POSTGRES_URL = os.getenv("POSTGRES_URL", "postgresql://xyz_user:xyz_password@localhost:5432/xyz_db")
+POSTGRES_URL = os.getenv("DATABASE_URL", "postgresql://xyz_user:xyz_password@localhost:5432/xyz_db")
 
 database = Database(POSTGRES_URL)
 
